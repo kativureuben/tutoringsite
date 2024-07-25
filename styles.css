@@ -1,0 +1,30 @@
+/* Existing styles... */
+
+/* Styles for services section */
+.services {
+    background: #fff;
+    padding: 2rem;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.services ul {
+    list-style: none;
+    padding: 0;
+}
+
+.services ul li {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .services ul li {
+        font-size: 1rem;
+    }
+}
