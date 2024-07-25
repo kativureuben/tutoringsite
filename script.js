@@ -1,16 +1,44 @@
-// Example JavaScript for form handling
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent the default form submission
+// Smooth scrolling for navigation links
+document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('nav ul li a');
 
-    // Simple form validation
-    let name = document.getElementById('name').value;
-    let email = document.getElementById('email').value;
-    let message = document.getElementById('message').value;
+    links.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
 
-    if(name && email && message) {
-        alert('Thank you for your message, ' + name + '!');
-        // Here you can also add code to handle the form submission (e.g., send data to a server)
-    } else {
-        alert('Please fill in all fields.');
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+
+// Form validation
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+
+    form.addEventListener('submit', function (event) {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !message) {
+            alert('Please fill out all fields.');
+            event.preventDefault();
+        } else if (!validateEmail(email)) {
+            alert('Please enter a valid email address.');
+            event.preventDefault();
+        }
+    });
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     }
 });
